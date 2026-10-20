@@ -572,7 +572,7 @@ card.addEventListener("click", () => {
         const symbol = document.createElement("div");
   
 
-const filename = window.photoFiles[name];
+const filename = window.photoFiles?.[name];
 
 if (filename) {
   const photo = document.createElement("img");
