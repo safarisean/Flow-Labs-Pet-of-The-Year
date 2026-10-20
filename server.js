@@ -14,4 +14,5 @@ app.get("/api/health", (req, res) => {
 });
 
 app.listen(PORT, "0.0.0.0", () => {
-  console
+  console.log(`Pet tournament running on port ${PORT}`);
+});
