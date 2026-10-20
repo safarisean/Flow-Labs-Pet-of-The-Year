@@ -225,8 +225,14 @@
   <p style="text-align:center;">
     Choose your favorite pet. One vote per visitor per round.
   </p>
-  <div id="voting-matchups"></div>
-</div>
+<div id="voting-matchups" style="
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  max-width:700px;
+  margin:30px auto;
+"></div>
+
 
 <script>
   document.getElementById("vote-now-button").addEventListener("click", () => {
