@@ -219,6 +219,25 @@
   </button>
 </section>
 
+        
+<div id="voting-area" style="display:none; margin:30px 0;">
+  <h2 style="text-align:center;">Round 1 — Cast Your Vote</h2>
+  <p style="text-align:center;">
+    Choose your favorite pet. One vote per visitor per round.
+  </p>
+  <div id="voting-matchups"></div>
+</div>
+
+<script>
+  document.getElementById("vote-now-button").addEventListener("click", () => {
+    document.getElementById("voting-area").style.display = "block";
+    document.getElementById("voting-area").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+</script>
+
+
   <h2>Championship Bracket</h2>
   <p>51 contestants. 6 rounds. One champion.</p>
 
