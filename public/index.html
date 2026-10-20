@@ -225,16 +225,75 @@
         `;
 
         const symbol = document.createElement("div");
-       
-if (name === "Iceland") {
+   const photoFiles = {
+  "Glacier": "(Glacier) Jenna Rackovan.jpg",
+  "Iceland": "Iceland (Jenna Rackovan).jpg",
+  "Albie": "Albie (Megan Laurie).jpeg",
+  "Athena": "Athena (Hunter Edmonds).JPG",
+  "Bacca": "Bacca (Tod H).PNG",
+  "Bailey": "Bailey (Ricky Todd).PNG",
+  "Baxter": "Baxter (Tod H).PNG",
+  "Beans": "Beans (Sam Blackwell).jpg",
+  "Beau": "Beau (Tyler Adams).JPG",
+  "Benny": "Benny (Hunter Edmonds).jpeg",
+  "Birdy": "Birdy (Dorian Smith).JPG",
+  "Bitty": "Bitty (Tyler Adams).JPG",
+  "Blu": "Blu (Dorian Smith).JPG",
+  "Brody": "Brody (Ariana).jpg",
+  "Cayden": "Cayden (Ken Davey).JPG",
+  "Cedric": "Cedric (James Conley).jpg",
+  "Elsie": "Elsie (Sean Turner).jpg",
+  "Francis": "Francis (Sam Blackwell).jpg",
+  "George": "George - Jeff Liddle.jpg",
+  "Hazel": "Hazel (Zack Watson).jpg",
+  "Hope": "Hope (Tod H).PNG",
+  "Houdini": "Houdini (Jacob).jpg",
+  "Indiana Jones": "Indiana Jones (Ben O).jpg",
+  "Kelso": "Kelso (Ken Davey).jpg",
+  "Kerfuffle": "Kerfuffle (Ben Mater).jpeg",
+  "Khaleese": "Khaleese (Tod H).PNG",
+  "Lando": "Lando (Amie Fancendola).jpg",
+  "Lily (1)": "Lily (Nick Lucia).JPEG",
+  "Lily (2)": "Lily (Aaron R.).jpeg",
+  "Maple": "Maple (Sue Malhassian).jpg",
+  "Millie": "Millie (Jacob).JPEG",
+  "Milo": "Milo (Tod O).jpeg",
+  "Ninny": "Ninny (Andrew).JPG",
+  "Oliver": "Oliver - Steve Savoie.jpg",
+  "Ollie": "Ollie (Mike).jpg",
+  "Opal": "Opal (James Conley).jpg",
+  "Ovi": "Ovi (Daniel Giza).jpg",
+  "Percy": "Percy 1 (Becca Hall).jpg",
+  "Poopsie": "Poopsie (Will Sexton).jpg",
+  "Raj": "Raj (Stu Cain).JPG",
+  "Reese": "Reese (Andrew).JPG",
+  "Sparky": "Sparky (Tod O).JPEG",
+  "Tootie": "Tootie (Tod H).PNG",
+  "Zeus": "Zeus (Hunter Edmonds).JPG",
+  "Zoey": "Zoey (Ricky Todd).JPEG"
+};
+
+const filename = photoFiles[name];
+
+if (filename) {
   const photo = document.createElement("img");
-  photo.src = "/pets/Iceland%20(Jenna%20Rackovan).jpg";
-  photo.alt = "Iceland";
-  photo.style.cssText = "width:100%;height:150px;object-fit:cover;border-radius:10px;";
+  photo.src = "/pets/" + encodeURIComponent(filename);
+  photo.alt = name;
+  photo.style.cssText = `
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:10px;
+  `;
+  photo.onerror = () => {
+    symbol.textContent = "🐾";
+  };
   symbol.appendChild(photo);
 } else {
   symbol.textContent = "🐾";
 }
+    
+
 
         symbol.style.fontSize = "40px";
 
