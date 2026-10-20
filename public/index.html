@@ -523,6 +523,9 @@ card.style.cursor = "pointer";
 card.title = "Click to view this matchup";
 
 card.append(heading, contestants);
+card.addEventListener("click", () => {
+  alert(`${match.pet1 || "TBD"} vs. ${match.pet2 || "TBD"}`);
+});
 
         roundOne.appendChild(card);
       });
