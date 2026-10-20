@@ -190,6 +190,58 @@
         Bracket Coming Soon
       </span>
     </div>
+    <section class="card">
+  <div class="accent"></div>
+  <h2>Meet the Contestants</h2>
+  <p>51 pets. One champion.</p>
+
+  <div id="pet-gallery" style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:16px;
+    margin-top:30px;
+  "></div>
+</section>
+
+<script>
+  fetch("/pets.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Could not load pets");
+      }
+      return response.json();
+    })
+    .then(pets => {
+      const gallery = document.getElementById("pet-gallery");
+
+      pets.forEach(name => {
+        const card = document.createElement("div");
+        card.style.cssText = `
+          background:#f4f7f9;
+          border:1px solid #e2e8ed;
+          border-radius:12px;
+          padding:20px 10px;
+          text-align:center;
+        `;
+
+        const symbol = document.createElement("div");
+        symbol.textContent = "🐾";
+        symbol.style.fontSize = "40px";
+
+        const label = document.createElement("h3");
+        label.textContent = name;
+
+        card.append(symbol, label);
+        gallery.appendChild(card);
+      });
+    })
+    .catch(error => {
+      console.error(error);
+      document.getElementById("pet-gallery").textContent =
+        "Contestants could not be loaded.";
+    });
+</script>
+
   </main>
 
   <footer>
