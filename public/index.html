@@ -192,6 +192,58 @@
     </div>
     <section class="card">
   <div class="accent"></div>
+      <section class="card" id="championship-bracket">
+  <div class="accent"></div>
+  <h2>Championship Bracket</h2>
+  <p>51 contestants. 6 rounds. One champion.</p>
+
+  <div id="bracket-matches" style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    margin-top:24px;
+  "></div>
+</section>
+
+<script src="/bracket.js"></script>
+<script>
+  createBracket()
+    .then(matches => {
+      const container = document.getElementById("bracket-matches");
+
+      matches.forEach(match => {
+        const card = document.createElement("div");
+        card.style.cssText = `
+          background:#f4f7f9;
+          border:1px solid #dce5e9;
+          border-radius:12px;
+          padding:16px;
+        `;
+
+        const heading = document.createElement("strong");
+        heading.textContent = `Match ${match.id}`;
+
+        const contestants = document.createElement("p");
+
+        if (!match.pet1 || !match.pet2) {
+          const advancingPet = match.pet1 || match.pet2;
+          contestants.textContent = `${advancingPet} — BYE`;
+        } else {
+          contestants.textContent =
+            `${match.pet1} vs. ${match.pet2}`;
+        }
+
+        card.append(heading, contestants);
+        container.appendChild(card);
+      });
+    })
+    .catch(error => {
+      console.error(error);
+      document.getElementById("bracket-matches").textContent =
+        "Unable to load the bracket.";
+    });
+</script>
+
   <h2>Meet the Contestants</h2>
   <p>51 pets. One champion.</p>
 
