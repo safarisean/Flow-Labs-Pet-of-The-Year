@@ -9,9 +9,10 @@ async function createBracket() {
 
   const pets = await response.json();
 
-  if (pets.length !== 51) {
-    throw new Error("Expected 51 contestants");
-  }
+if (pets.length < 2 || pets.length > 64) {
+  throw new Error("Tournament requires 2 to 64 contestants");
+}
+
 
   // Use the saved contestant order for a consistent bracket.
   const entrants = [...pets];
