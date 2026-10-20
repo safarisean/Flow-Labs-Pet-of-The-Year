@@ -13,9 +13,23 @@ if (pets.length < 2 || pets.length > 64) {
   throw new Error("Tournament requires 2 to 64 contestants");
 }
 
+// Randomize contestants using a fixed tournament seed.
+// Everyone sees the same matchups.
+const entrants = [...pets];
 
-  // Use the saved contestant order for a consistent bracket.
-  const entrants = [...pets];
+let seed = 20261020;
+
+function random() {
+  seed = (seed * 1664525 + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+
+for (let i = entrants.length - 1; i > 0; i--) {
+  const j = Math.floor(random() * (i + 1));
+  [entrants[i], entrants[j]] = [entrants[j], entrants[i]];
+}
+
+
 
   // 13 contestants receive first-round byes.
   const byeCount = TOURNAMENT_SIZE - entrants.length;
