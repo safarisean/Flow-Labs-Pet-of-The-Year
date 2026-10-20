@@ -225,7 +225,17 @@
         `;
 
         const symbol = document.createElement("div");
-        symbol.textContent = "🐾";
+       
+if (name === "Iceland") {
+  const photo = document.createElement("img");
+  photo.src = "/pets/Iceland%20(Jenna%20Rackovan).jpg";
+  photo.alt = "Iceland";
+  photo.style.cssText = "width:100%;height:150px;object-fit:cover;border-radius:10px;";
+  symbol.appendChild(photo);
+} else {
+  symbol.textContent = "🐾";
+}
+
         symbol.style.fontSize = "40px";
 
         const label = document.createElement("h3");
