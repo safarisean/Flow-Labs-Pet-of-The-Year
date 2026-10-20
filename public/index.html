@@ -274,6 +274,40 @@ let currentMatchIndex = 0;
 
       </div>
     `;
+const voterId =
+  localStorage.getItem("flowLabsVoterId") ||
+  crypto.randomUUID();
+
+localStorage.setItem("flowLabsVoterId", voterId);
+
+document.querySelectorAll(".pet-vote-button").forEach(button => {
+  button.addEventListener("click", async () => {
+    const selectedPet = button.dataset.pet;
+    const matchup = `${pet1} vs ${pet2}`;
+
+    const response = await fetch("/api/vote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        round: 1,
+        matchup,
+        pet: selectedPet,
+        voter_id: voterId
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      alert(result.error || "Vote could not be saved.");
+      return;
+    }
+
+    alert(`Vote recorded for ${selectedPet}!`);
+  });
+});
 
     votingArea.style.display = "block";
 
