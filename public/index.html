@@ -239,8 +239,14 @@
     const votingArea = document.getElementById("voting-area");
     const matchupBox = document.getElementById("voting-matchups");
 
-    const matches = await createBracket();
-    const firstMatch = matches[0];
+ const matches = await createBracket();
+
+const votingMatches = matches.filter(match =>
+  match.pet1 !== null && match.pet2 !== null
+);
+
+const firstMatch = votingMatches[0];
+
 
     const pet1 = firstMatch.pet1;
     const pet2 = firstMatch.pet2;
