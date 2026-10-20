@@ -491,6 +491,20 @@ championship.appendChild(finalMatch);
 
 matches.forEach(match => {
 
+  const card = document.createElement("div");
+
+card.style.cssText = `
+  background:#f4f7f9;
+  border:1px solid #dce5e9;
+  border-radius:12px;
+  padding:16px;
+  cursor:pointer;
+`;
+
+const heading = document.createElement("strong");
+heading.textContent = `Match ${match.id}`;
+
+
    const contestants = document.createElement("div");
 
 contestants.style.cssText = `
