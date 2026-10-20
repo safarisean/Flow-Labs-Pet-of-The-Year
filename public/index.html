@@ -266,9 +266,29 @@
 };
   createBracket()
     .then(matches => {
-      const container = document.getElementById("bracket-matches");
+ const container = document.getElementById("bracket-matches");
 
-      matches.forEach(match => {
+const roundOne = document.createElement("div");
+roundOne.style.cssText = `
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  width:250px;
+  flex-shrink:0;
+`;
+
+const roundTitle = document.createElement("h3");
+roundTitle.textContent = "ROUND 1";
+roundTitle.style.cssText = `
+  text-align:center;
+  margin-bottom:12px;
+`;
+
+roundOne.appendChild(roundTitle);
+container.appendChild(roundOne);
+
+matches.forEach(match => {
+
         const card = document.createElement("div");
         card.style.cssText = `
           background:#f4f7f9;
