@@ -441,6 +441,49 @@ for (let i = 1; i <= 2; i++) {
   match.textContent = `Match ${i}: Winner TBD vs. Winner TBD`;
   finalFour.appendChild(match);
 }
+const championship = document.createElement("div");
+
+championship.style.cssText = `
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  width:250px;
+  flex-shrink:0;
+`;
+
+const championshipTitle = document.createElement("h3");
+championshipTitle.textContent = "CHAMPIONSHIP";
+championshipTitle.style.cssText = `
+  text-align:center;
+  margin-bottom:12px;
+`;
+
+championship.appendChild(championshipTitle);
+container.appendChild(championship);
+
+const finalMatch = document.createElement("div");
+
+finalMatch.style.cssText = `
+  background:#f4f7f9;
+  border:2px solid #16825d;
+  border-radius:12px;
+  padding:20px;
+  min-height:110px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+  gap:12px;
+`;
+
+finalMatch.innerHTML = `
+  <strong>🏆 Championship Match</strong>
+  <span style="color:#718096;">
+    Finalist TBD vs. Finalist TBD
+  </span>
+`;
+
+championship.appendChild(finalMatch);
   match.append(heading, pets);
   roundTwo.appendChild(match);
 }
