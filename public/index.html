@@ -235,13 +235,39 @@
 
 
 <script>
-  document.getElementById("vote-now-button").addEventListener("click", () => {
-    document.getElementById("voting-area").style.display = "block";
-    document.getElementById("voting-area").scrollIntoView({
+  document.getElementById("vote-now-button").addEventListener("click", async () => {
+    const votingArea = document.getElementById("voting-area");
+    const matchupBox = document.getElementById("voting-matchups");
+
+    const matches = await createBracket();
+    const firstMatch = matches[0];
+
+    const pet1 = firstMatch.pet1;
+    const pet2 = firstMatch.pet2;
+
+    const photo1 = window.photoFiles[pet1];
+    const photo2 = window.photoFiles[pet2];
+
+    matchupBox.innerHTML = `
+      <div style="text-align:center;">
+        <img src="/pets/${photo1}" style="width:100%; max-width:300px; border-radius:14px;">
+        <h3>${pet1}</h3>
+      </div>
+
+      <div style="text-align:center;">
+        <img src="/pets/${photo2}" style="width:100%; max-width:300px; border-radius:14px;">
+        <h3>${pet2}</h3>
+      </div>
+    `;
+
+    votingArea.style.display = "block";
+
+    votingArea.scrollIntoView({
       behavior: "smooth"
     });
   });
 </script>
+
 
 <script src="/bracket.js"></script>
 <script>
