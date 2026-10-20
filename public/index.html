@@ -258,7 +258,11 @@ let currentMatchIndex = 0;
     matchupBox.innerHTML = `
       <div style="text-align:center;">
         <img src="/pets/${photo1}" style="width:100%; max-width:300px; border-radius:14px;">
-        <h3>${pet1}</h3>
+      <h3>${pet1}</h3>
+<button class="pet-vote-button" data-pet="${pet1}">
+  Vote for ${pet1}
+</button>
+
       </div>
 
       <div style="text-align:center;">
