@@ -245,7 +245,8 @@ const votingMatches = matches.filter(match =>
   match.pet1 !== null && match.pet2 !== null
 );
 
-const firstMatch = votingMatches[0];
+let currentMatchIndex = 0;
+    const firstMatch = votingMatches[currentMatchIndex];
 
 
     const pet1 = firstMatch.pet1;
