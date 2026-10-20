@@ -223,17 +223,91 @@
         const heading = document.createElement("strong");
         heading.textContent = `Match ${match.id}`;
 
-        const contestants = document.createElement("p");
+     const contestants = document.createElement("div");
+contestants.style.cssText = `
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:14px;
+`;
 
-        if (!match.pet1 || !match.pet2) {
-          const advancingPet = match.pet1 || match.pet2;
-          contestants.textContent = `${advancingPet} — BYE`;
-        } else {
-          contestants.textContent =
-            `${match.pet1} vs. ${match.pet2}`;
-        }
+function createPetRow(name, isBye = false) {
+  const row = document.createElement("div");
+  row.style.cssText = `
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px;
+    background:white;
+    border-radius:10px;
+  `;
 
-        card.append(heading, contestants);
+  const photo = document.createElement("img");
+  const filename = photoFiles[name];
+
+  photo.src = filename
+    ? "/pets/" + encodeURIComponent(filename)
+    : "";
+
+  photo.alt = name;
+  photo.style.cssText = `
+    width:48px;
+    height:48px;
+    object-fit:cover;
+    border-radius:50%;
+    flex-shrink:0;
+  `;
+
+  photo.onerror = () => {
+    photo.style.display = "none";
+    const paw = document.createElement("span");
+    paw.textContent = "🐾";
+    paw.style.fontSize = "28px";
+    row.prepend(paw);
+  };
+
+  const label = document.createElement("strong");
+  label.textContent = name;
+
+  row.append(photo, label);
+
+  if (isBye) {
+    const bye = document.createElement("span");
+    bye.textContent = "BYE";
+    bye.style.cssText = `
+      margin-left:auto;
+      color:#16825d;
+      font-size:12px;
+      font-weight:bold;
+    `;
+    row.appendChild(bye);
+  }
+
+  return row;
+}
+
+if (!match.pet1 || !match.pet2) {
+  contestants.appendChild(
+    createPetRow(match.pet1 || match.pet2, true)
+  );
+} else {
+  contestants.appendChild(createPetRow(match.pet1));
+
+  const versus = document.createElement("div");
+  versus.textContent = "VS";
+  versus.style.cssText = `
+    text-align:center;
+    color:#718096;
+    font-size:11px;
+    font-weight:bold;
+  `;
+  contestants.appendChild(versus);
+
+  contestants.appendChild(createPetRow(match.pet2));
+}
+
+card.append(heading, contestants);
+
         container.appendChild(card);
       });
     })
